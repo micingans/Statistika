@@ -5,15 +5,14 @@
 import math
 import re
 import os
-from collections import Counter
 
 def jarak(s):
 	jarak = max(s) - min(s)
 
 	return jarak
 
-def kelas(s):
-	panjang = jarak(s) / panjang_kelas(s)
+def panjang_kelas(s):
+	panjang = jarak(s) / besar_kelas(s)
 
 	return round(panjang)
 
@@ -22,18 +21,14 @@ def banyak(s):
 
 	return banyak
 
-def panjang_kelas(s):
+def besar_kelas(s):
 	much = banyak(s)
-	besar = (1 + (3.3)*(math.log(much)))
+	besar = 1 + ((3.3)*(math.log(much, 10)))
 
 	return round(besar)
 
 data = list(map(int, input("Masukkan data : ").strip().split()))
 sort = sorted(data)
-
-angka = Counter(sort)
-
-sering_muncul = angka.most_common(1)[0][0]
 
 kecil = min(sort)
 besar = max(sort)
@@ -44,10 +39,10 @@ print(f"Data yang sudah disusun = {sort}\n")
 print(f"Jumlah data = {banyak(data)}\n")
 print(f"Rentang data = {jarak(sort)}\n")
 print(f"Panjang Kelas data = {panjang_kelas(data)}\n")
-print(f"Kelas data = {kelas(sort)}\n")
+print(f"Kelas data = {besar_kelas(sort)}\n")
 
 awal = 1
-for x in range(1, (kelas(sort) + 2)):
+for x in range(1, (besar_kelas(sort) + 2)):
 	for y in range(0, x+1, 1):
 		print(f"Interval data {kecil + (panjang_kelas(sort) * y + awal - 1)}-{kecil + (panjang_kelas(sort) * x) - 1}")
 		for z in range(kecil + (panjang_kelas(sort) * y + awal - 1), (kecil + (panjang_kelas(sort) * x))):
@@ -55,4 +50,7 @@ for x in range(1, (kelas(sort) + 2)):
 				print(f"Interval data {z} -> {a}")
 				awal += 1
 		print("")
+		# for alot in a:
+		# 	data = sum(a)
+		# 	print("Frenkuensi Kumulatif {0}".format(data))
 		break;
