@@ -5,6 +5,9 @@
 import math
 import re
 import os
+import numpy as np
+from scipy import stats
+
 
 def jarak(s):
 	jarak = max(s) - min(s)
@@ -50,7 +53,12 @@ for x in range(1, (besar_kelas(sort) + 2)):
 				print(f"Interval data {z} -> {a}")
 				awal += 1
 		print("")
-		# for alot in a:
-		# 	data = sum(a)
-		# 	print("Frenkuensi Kumulatif {0}".format(data))
 		break;
+
+mean = np.mean(sort)
+median = np.median(sort)
+modus = stats.mode(sort)
+
+print(f"Nilai Mean = {mean}")
+print(f"Nilai Median = {median}")
+print(f"Nilai Modus = {modus[0][0]}")
