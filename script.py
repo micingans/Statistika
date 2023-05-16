@@ -6,6 +6,7 @@ import math
 import re
 import os
 import numpy as np
+import sys
 from scipy import stats
 
 
@@ -30,7 +31,10 @@ def besar_kelas(s):
 
 	return round(besar)
 
-data = list(map(int, input("Masukkan data : ").strip().split()))
+file = sys.argv[1]
+f = open(file, 'r')
+
+data = list(map(int, f.read().strip().split()))
 sort = sorted(data)
 
 kecil = min(sort)
